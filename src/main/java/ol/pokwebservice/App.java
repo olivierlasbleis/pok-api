@@ -17,6 +17,6 @@ import ol.pokwebservice.utils.CombinaisonUtils;
 public class App {
 
 	public static void main(String[] args) {
-
+		
 	}
 }

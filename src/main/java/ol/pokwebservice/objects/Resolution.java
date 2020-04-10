@@ -107,11 +107,9 @@ public class Resolution {
 		this.carte5 = cartesFlopJoueur.get(5); 
 		this.carte6 = cartesFlopJoueur.get(6); 
 			
-			
 		this.cartes = cartesFlopJoueur;
 		this.combinaisonMax = CombinaisonUtils.determinerCombinaisonMaxAvec7Cartes(cartesFlopJoueur);
 		this.mainsQueJeBat = new ArrayList<Main>();
-		
 		
 		this.calculerMainsQueJeBatEtRangeResolution(cartesFlop);
 		this.pourcentageGagne = this.mainsQueJeBat.size() * 1.0 / this.mainsAdversairePossibles.size();
@@ -135,7 +133,7 @@ public class Resolution {
 			cartesFlopAdversaire.add(((Main) mainAdversaire).getCarte2());
 			Combinaison combinaisonMaxAdversaire = CombinaisonUtils.determinerCombinaisonMaxAvec7Cartes(cartesFlopAdversaire);
 			if (combinaisonMaxAdversaire.compareTo(
-					this.combinaisonMax) < 0) {
+					this.combinaisonMax) <= 0) {
 				this.mainsQueJeBat.add((Main) mainAdversaire);
 			}
 		});
@@ -163,7 +161,6 @@ public class Resolution {
 	}
 
 	private double[][] calculerLaRangeLocale(List<Main> listeDesMainsQueJeBat){
-		
 		
 		int[][] rangeMainsPossibles = new int[13][13];
 		for (Main main : this.mainsAdversairePossibles ) {

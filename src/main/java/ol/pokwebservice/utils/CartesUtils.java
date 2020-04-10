@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ol.pokwebservice.objects.Carte;
 import ol.pokwebservice.objects.Combinaison;
 import ol.pokwebservice.objects.Main;
-import ol.pokwebservice.objects.enums.SigneCarte;
 import ol.pokwebservice.objects.enums.ValeurCarte;
+import ol.pokwebservice.objects.enums.SigneCarte;
 import ol.pokwebservice.repositories.CarteRepository;
 
 public class CartesUtils {
@@ -83,43 +83,43 @@ public class CartesUtils {
 	
 	public static Carte instancierCarte (String nomCarte) {
 		ValeurCarte valeurCarte = null;
-		if (nomCarte.startsWith("as")) {
+		if (nomCarte.startsWith("A")) {
 			valeurCarte = ValeurCarte.AS;
-		}else if (nomCarte.startsWith("roi")) {
+		}else if (nomCarte.startsWith("K")) {
 			valeurCarte = ValeurCarte.ROI;
-		}else if (nomCarte.startsWith("dame")) {
+		}else if (nomCarte.startsWith("Q")) {
 			valeurCarte = ValeurCarte.DAME;
-		}else if (nomCarte.startsWith("valet")) {
+		}else if (nomCarte.startsWith("J")) {
 			valeurCarte = ValeurCarte.VALET;
-		}else if (nomCarte.startsWith("dix")) {
+		}else if (nomCarte.startsWith("10")) {
 			valeurCarte = ValeurCarte.DIX;
-		}else if (nomCarte.startsWith("neuf")) {
+		}else if (nomCarte.startsWith("9")) {
 			valeurCarte = ValeurCarte.NEUF;
-		}else if (nomCarte.startsWith("huit")) {
+		}else if (nomCarte.startsWith("8")) {
 			valeurCarte = ValeurCarte.HUIT;
-		}else if (nomCarte.startsWith("sept")) {
+		}else if (nomCarte.startsWith("7")) {
 			valeurCarte = ValeurCarte.SEPT;
-		}else if (nomCarte.startsWith("six")) {
+		}else if (nomCarte.startsWith("6")) {
 			valeurCarte = ValeurCarte.SIX;
-		}else if (nomCarte.startsWith("cinq")) {
+		}else if (nomCarte.startsWith("5")) {
 			valeurCarte = ValeurCarte.CINQ;
-		}else if (nomCarte.startsWith("quatre")) {
+		}else if (nomCarte.startsWith("4")) {
 			valeurCarte = ValeurCarte.QUATRE;
-		}else if (nomCarte.startsWith("trois")) {
+		}else if (nomCarte.startsWith("3")) {
 			valeurCarte = ValeurCarte.TROIS;
-		}else if (nomCarte.startsWith("deux")) {
+		}else if (nomCarte.startsWith("2")) {
 			valeurCarte = ValeurCarte.DEUX;
 		}
 		SigneCarte signeCarte = null;
-				if (nomCarte.endsWith("Ca")) {
-					signeCarte = SigneCarte.CARREAU;
-				}else if (nomCarte.endsWith("Co") ){
-					signeCarte = SigneCarte.COEUR;
-				}else if (nomCarte.endsWith("Pi")) {
-					signeCarte = SigneCarte.PIQUE;
-				}else if (nomCarte.endsWith("Tr")) {
-					signeCarte = SigneCarte.TREFLE;
-				}
+		if (nomCarte.endsWith("d")) {
+			signeCarte = SigneCarte.CARREAU;
+		}else if (nomCarte.endsWith("h") ){
+			signeCarte = SigneCarte.COEUR;
+		}else if (nomCarte.endsWith("s")) {
+			signeCarte = SigneCarte.PIQUE;
+		}else if (nomCarte.endsWith("c")) {
+			signeCarte = SigneCarte.TREFLE;
+		}
 				
 		return new Carte(valeurCarte , signeCarte);
 		

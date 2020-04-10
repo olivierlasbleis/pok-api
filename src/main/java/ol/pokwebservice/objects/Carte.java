@@ -31,43 +31,41 @@ public class Carte {
 	public CarteVue instancierCarteVue() {
 			String nomCarte = "";
 			if (this.valeurCarte == ValeurCarte.AS) {
-				nomCarte = "as";
-			}else if (this.valeurCarte == ValeurCarte.AS) {
-				nomCarte = "as";
+				nomCarte = "A";
 			}else if (this.valeurCarte == ValeurCarte.ROI) {
-				nomCarte = "roi";
+				nomCarte = "K";
 			}else if (this.valeurCarte == ValeurCarte.DAME) {
-				nomCarte = "dame";
+				nomCarte = "Q";
 			}else if (this.valeurCarte == ValeurCarte.VALET) {
-				nomCarte = "valet";
+				nomCarte = "J";
 			}else if (this.valeurCarte == ValeurCarte.DIX) {
-				nomCarte = "dix";
+				nomCarte = "10";
 			}else if (this.valeurCarte == ValeurCarte.NEUF) {
-				nomCarte = "neuf";
+				nomCarte = "9";
 			}else if (this.valeurCarte == ValeurCarte.HUIT) {
-				nomCarte = "huit";
+				nomCarte = "8";
 			}else if (this.valeurCarte == ValeurCarte.SEPT) {
-				nomCarte = "sept";
+				nomCarte = "7";
 			}else if (this.valeurCarte == ValeurCarte.SIX) {
-				nomCarte = "six";
+				nomCarte = "6";
 			}else if (this.valeurCarte == ValeurCarte.CINQ) {
-				nomCarte = "cinq";
+				nomCarte = "5";
 			}else if (this.valeurCarte == ValeurCarte.QUATRE) {
-				nomCarte = "quatre";
+				nomCarte = "4";
 			}else if (this.valeurCarte == ValeurCarte.TROIS) {
-				nomCarte = "trois";
+				nomCarte = "3";
 			}else if (this.valeurCarte == ValeurCarte.DEUX) {
-				nomCarte = "deux";
+				nomCarte = "2";
 			}
 			String signeCarte = "";
 			if (this.signeCarte == SigneCarte.CARREAU) {
-						signeCarte = "Ca";
+						signeCarte = "d";
 			}else if (this.signeCarte == SigneCarte.COEUR) {
-				signeCarte = "Co";
+				signeCarte = "h";
 			}else if (this.signeCarte == SigneCarte.PIQUE) {
-				signeCarte = "Pi";
+				signeCarte = "s";
 			}else if (this.signeCarte == SigneCarte.TREFLE) {
-				signeCarte = "Tr";
+				signeCarte = "c";
 			} 
 					
 			return new CarteVue(nomCarte , signeCarte);
