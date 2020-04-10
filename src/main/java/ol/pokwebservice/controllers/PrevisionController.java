@@ -17,6 +17,7 @@ import ol.pokwebservice.objects.Prevision;
 import ol.pokwebservice.objects.Resolution;
 import ol.pokwebservice.objects.vues.CarteVue;
 import ol.pokwebservice.objects.vues.PrevisionVue;
+import ol.pokwebservice.services.ApiAccountService;
 import ol.pokwebservice.services.CarteService;
 import ol.pokwebservice.services.ResolutionService;
 import ol.pokwebservice.utils.AllUtils;
@@ -31,6 +32,9 @@ public class PrevisionController {
 	@Autowired
 	CarteService carteService;
 	
+	@Autowired
+	ApiAccountService apiAccountService;
+	
 	@GetMapping("/obtenirMesCartes")
 	public List<CarteVue> obtenirMesCartes(@RequestParam  String nomJoueur) {
 		return null;
@@ -38,7 +42,10 @@ public class PrevisionController {
 	
 	
 	@GetMapping("/obtenirPrevision")
-	public PrevisionVue obtenirPrevision(@RequestParam  String carte1,String carte2,String carte3,String carte4,String carte5,String carte6,String carte7) {
+	public PrevisionVue obtenirPrevision(@RequestParam String apiKey,  String carte1,String carte2,String carte3,String carte4,String carte5,String carte6,String carte7) {
+		
+		if (apiAccountService.newCallApi(apiKey)) {
+			
 		
 		Main mainJoueur = new Main(carteService.findOrSave(CartesUtils.instancierCarte(carte1)),
 				carteService.findOrSave(CartesUtils.instancierCarte(carte2)));
@@ -131,6 +138,9 @@ public class PrevisionController {
 				rangePrevision,
 				pourcentageGagne);
 		return new PrevisionVue(prevision);
+		}else {
+			return null;
+		}
 	}
 	
 

@@ -1,25 +1,30 @@
-package ol.pokwebservice;
+package ol.pokwebservice.objects;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
 import java.util.Random;
 
-import ol.pokwebservice.objects.Carte;
-import ol.pokwebservice.objects.Main;
-import ol.pokwebservice.objects.Prevision;
-import ol.pokwebservice.objects.Resolution;
-import ol.pokwebservice.objects.enums.ValeurCarte;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ol.pokwebservice.utils.AllUtils;
-import ol.pokwebservice.utils.CartesUtils;
-import ol.pokwebservice.utils.CombinaisonUtils;
 
-public class App {
-
-	public static void main(String[] args) {
-		
+@Entity
+@Data
+public class ApiAccount {
+	
+	@Id
+	private String id;
+	private String dateAppelApi;
+	private int nbAppelApi;
+	
+	public ApiAccount() {
+		super();
+		this.id = generateRandomId();
+	}
+	public String generateRandomId() {
 		int leftLimit = 97; // letter 'a'
 	    int rightLimit = 122; // letter 'z'
 	    int targetStringLength = AllUtils.getRandomNumberInRange(10, 30);
@@ -32,7 +37,12 @@ public class App {
 	    }
 	    String generatedString = buffer.toString();
 	 
-	    System.out.println(generatedString);
-		
+	    return generatedString;
 	}
+
+	public ApiAccount(String id) {
+		super();
+		this.id = id;
+	}
+
 }
