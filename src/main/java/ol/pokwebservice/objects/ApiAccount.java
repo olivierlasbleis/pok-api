@@ -2,10 +2,13 @@ package ol.pokwebservice.objects;
 
 import java.nio.charset.Charset;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +22,14 @@ public class ApiAccount {
 	private String id;
 	private String dateAppelApi;
 	private int nbAppelApi;
+	@OneToMany
+	List<Carte> cartesCourantes;
 	
 	public ApiAccount() {
 		super();
 		this.id = generateRandomId();
 	}
+	
 	public String generateRandomId() {
 		int leftLimit = 97; // letter 'a'
 	    int rightLimit = 122; // letter 'z'

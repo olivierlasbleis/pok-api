@@ -1,11 +1,14 @@
 package ol.pokwebservice.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ol.pokwebservice.objects.ApiAccount;
+import ol.pokwebservice.objects.Carte;
+import ol.pokwebservice.objects.vues.CarteVue;
 import ol.pokwebservice.repositories.ApiAccountRepository;
 import ol.pokwebservice.utils.DateUtils;
 
@@ -41,6 +44,11 @@ public class ApiAccountService {
 		}else {
 			return false;
 		}
-		
+	}
+
+	public List<Carte> saveListCards(String apiKey, List<Carte> cartes) {
+		ApiAccount currentApiAccount = apiAccountRepository.findById(apiKey).get();
+		currentApiAccount.setCartesCourantes(cartes);
+		return apiAccountRepository.save(currentApiAccount).getCartesCourantes();
 	}
 }

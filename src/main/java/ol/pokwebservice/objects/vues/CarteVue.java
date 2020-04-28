@@ -11,8 +11,15 @@ public class CarteVue {
 	private String nomCarte;
 	private String urlPhoto;
 		
+	
+	
 	public CarteVue(String nomCarte, String signeCarte) {
-		this.nomCarte = nomCarte + signeCarte;
+		if (signeCarte == null) {
+			this.nomCarte = nomCarte;
+		}else {
+			this.nomCarte = nomCarte + signeCarte;
+		}
+		
 		this.urlPhoto = "http://www.hegerm.ch/images/cartes/" + nomCarte + signeCarte + ".gif";//10h.gif
 		
 	}

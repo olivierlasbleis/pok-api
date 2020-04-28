@@ -11,6 +11,7 @@ import ol.pokwebservice.objects.Carte;
 import ol.pokwebservice.objects.Main;
 import ol.pokwebservice.objects.enums.SigneCarte;
 import ol.pokwebservice.objects.enums.ValeurCarte;
+import ol.pokwebservice.objects.vues.CarteVue;
 import ol.pokwebservice.repositories.CarteRepository;
 import ol.pokwebservice.utils.AllUtils;
 import ol.pokwebservice.utils.CartesUtils;
@@ -51,5 +52,8 @@ public class CarteService {
 			return carteRepository.save(carte);
 		}
 	}
+
+	
+
 
 }
