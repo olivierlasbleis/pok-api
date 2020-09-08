@@ -33,9 +33,8 @@ import ol.pokwebservice.utils.CartesUtils;
 import ol.pokwebservice.utils.CombinaisonUtils;
 import ol.pokwebservice.utils.MainsUtils;
 
-@Data
+
 @Entity
-@NoArgsConstructor
 public class Resolution {
 	
 	//cette liste est de minimum 7 cartes, 
@@ -65,7 +64,7 @@ public class Resolution {
 	@Transient
 	Combinaison combinaisonMax;
 	@Transient
-	List<Main> mainsQueJeBat;
+	List<Main> mainsQuimeBattent;
 	@Transient
 	List<Main> mainsAdversairePossibles;
 	double pourcentageGagne;
@@ -92,6 +91,9 @@ public class Resolution {
 	
 	public Resolution(Main mainJoueur, List<Carte> cartesFlop, List<Main> mainsAdversairePossibles) {
 		
+		if (mainJoueur.getCarte1().getValeurCarte().equals(ValeurCarte.ROI) && mainJoueur.getCarte2().getValeurCarte().equals(ValeurCarte.ROI)) {
+			System.out.println("coucou");
+		}
 		this.mainsAdversairePossibles = mainsAdversairePossibles;
 		
 		List<Carte> cartesFlopJoueur  = new ArrayList<Carte>(cartesFlop);
@@ -109,10 +111,10 @@ public class Resolution {
 			
 		this.cartes = cartesFlopJoueur;
 		this.combinaisonMax = CombinaisonUtils.determinerCombinaisonMaxAvec7Cartes(cartesFlopJoueur);
-		this.mainsQueJeBat = new ArrayList<Main>();
+		this.mainsQuimeBattent = new ArrayList<Main>();
 		
 		this.calculerMainsQueJeBatEtRangeResolution(cartesFlop);
-		this.pourcentageGagne = this.mainsQueJeBat.size() * 1.0 / this.mainsAdversairePossibles.size();
+		this.pourcentageGagne = this.mainsQuimeBattent.size() * 1.0 / this.mainsAdversairePossibles.size();
 	}
 	
 	private Optional<Carte> findByValeurCarteAndSigneCarte(ValeurCarte valeurCarte, SigneCarte signeCarte) {
@@ -126,6 +128,22 @@ public class Resolution {
 		
 		Stream streamMainsAdversairePossibles = this.mainsAdversairePossibles.stream();
 		streamMainsAdversairePossibles.forEach(mainAdversaire -> {
+			if (((Main)mainAdversaire).getCarte1().getValeurCarte().equals(ValeurCarte.DAME) 
+					&& ((Main)mainAdversaire).getCarte2().getValeurCarte().equals(ValeurCarte.CINQ)) {
+					System.out.println("ici");
+				}
+			if (((Main)mainAdversaire).getCarte1().getValeurCarte().equals(ValeurCarte.CINQ) 
+					&& ((Main)mainAdversaire).getCarte2().getValeurCarte().equals(ValeurCarte.DAME)) {
+					System.out.println("ici");
+				}
+			if (((Main)mainAdversaire).getCarte1().getValeurCarte().equals(ValeurCarte.AS) 
+					&& ((Main)mainAdversaire).getCarte2().getValeurCarte().equals(ValeurCarte.DAME)) {
+					System.out.println("ici");
+				}
+			if (((Main)mainAdversaire).getCarte1().getValeurCarte().equals(ValeurCarte.DAME) 
+					&& ((Main)mainAdversaire).getCarte2().getValeurCarte().equals(ValeurCarte.AS)) {
+					System.out.println("ici");
+				}
 			rangeMainsPossibles[((Main) mainAdversaire).getI()][((Main) mainAdversaire).getJ()] = 
 					rangeMainsPossibles[((Main) mainAdversaire).getI()][((Main) mainAdversaire).getJ()] + 1;
 			List<Carte> cartesFlopAdversaire = new ArrayList<Carte>(cartesFlopCommunes);
@@ -133,27 +151,29 @@ public class Resolution {
 			cartesFlopAdversaire.add(((Main) mainAdversaire).getCarte2());
 			Combinaison combinaisonMaxAdversaire = CombinaisonUtils.determinerCombinaisonMaxAvec7Cartes(cartesFlopAdversaire);
 			if (combinaisonMaxAdversaire.compareTo(
-					this.combinaisonMax) <= 0) {
-				this.mainsQueJeBat.add((Main) mainAdversaire);
+					this.combinaisonMax) > 0) {
+				this.mainsQuimeBattent.add((Main) mainAdversaire);
 			}
 		});
 		
 		double[][] range = new double[13][13];
 		
-		Stream streamMainsQueJeBat = this.mainsQueJeBat.stream();
+		Stream streamMainsQueJeBat = this.mainsQuimeBattent.stream();
 		streamMainsQueJeBat.forEach(main -> 
 			range[((Main) main).getI()][((Main) main).getJ()] = 
 				range[((Main) main).getI()][((Main) main).getJ()] + 1.0);
+		
 		
 		for (int i = 0; i < range.length; i++) {
 			for (int j = 0; j < range[i].length; j++) {
 				if (i == j) {
 					range[i][j] = range[i][j] * 1.0 / rangeMainsPossibles[i][j];
 				}else if (i > j) {
-					range[i][j] = range[i][j] * 1.0 / rangeMainsPossibles[i][j];
+					range[i][j] =  range[i][j] * 1.0 / rangeMainsPossibles[i][j];
 				}else if (i < j) {
 					range[i][j] = range[i][j] * 1.0 / rangeMainsPossibles[i][j];
 				}
+				
 			}
 		}
 		this.rangeResolution =  range;
@@ -182,5 +202,137 @@ public class Resolution {
 			}
 		}
 		return range;
+	}
+
+	public Resolution() {
+		super();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Carte getCarte0() {
+		return carte0;
+	}
+
+	public void setCarte0(Carte carte0) {
+		this.carte0 = carte0;
+	}
+
+	public Carte getCarte1() {
+		return carte1;
+	}
+
+	public void setCarte1(Carte carte1) {
+		this.carte1 = carte1;
+	}
+
+	public Carte getCarte2() {
+		return carte2;
+	}
+
+	public void setCarte2(Carte carte2) {
+		this.carte2 = carte2;
+	}
+
+	public Carte getCarte3() {
+		return carte3;
+	}
+
+	public void setCarte3(Carte carte3) {
+		this.carte3 = carte3;
+	}
+
+	public Carte getCarte4() {
+		return carte4;
+	}
+
+	public void setCarte4(Carte carte4) {
+		this.carte4 = carte4;
+	}
+
+	public Carte getCarte5() {
+		return carte5;
+	}
+
+	public void setCarte5(Carte carte5) {
+		this.carte5 = carte5;
+	}
+
+	public Carte getCarte6() {
+		return carte6;
+	}
+
+	public void setCarte6(Carte carte6) {
+		this.carte6 = carte6;
+	}
+
+	public List<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(List<Carte> cartes) {
+		this.cartes = cartes;
+	}
+
+	public Combinaison getCombinaisonMax() {
+		return combinaisonMax;
+	}
+
+	public void setCombinaisonMax(Combinaison combinaisonMax) {
+		this.combinaisonMax = combinaisonMax;
+	}
+
+	public List<Main> getMainsQueJeBat() {
+		return mainsQuimeBattent;
+	}
+
+	public void setMainsQueJeBat(List<Main> mainsQueJeBat) {
+		this.mainsQuimeBattent = mainsQueJeBat;
+	}
+
+	public List<Main> getMainsAdversairePossibles() {
+		return mainsAdversairePossibles;
+	}
+
+	public void setMainsAdversairePossibles(List<Main> mainsAdversairePossibles) {
+		this.mainsAdversairePossibles = mainsAdversairePossibles;
+	}
+
+	public double getPourcentageGagne() {
+		return pourcentageGagne;
+	}
+
+	public void setPourcentageGagne(double pourcentageGagne) {
+		this.pourcentageGagne = pourcentageGagne;
+	}
+
+	public double[][] getRangeResolution() {
+		return rangeResolution;
+	}
+
+	public void setRangeResolution(double[][] rangeResolution) {
+		this.rangeResolution = rangeResolution;
+	}
+
+	public ResolutionService getResolutionService() {
+		return resolutionService;
+	}
+
+	public void setResolutionService(ResolutionService resolutionService) {
+		this.resolutionService = resolutionService;
+	}
+
+	public CarteService getCarteService() {
+		return carteService;
+	}
+
+	public void setCarteService(CarteService carteService) {
+		this.carteService = carteService;
 	}
 }

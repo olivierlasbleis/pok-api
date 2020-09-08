@@ -13,7 +13,6 @@ import ol.pokwebservice.services.ResolutionService;
 import ol.pokwebservice.utils.AllUtils;
 import ol.pokwebservice.utils.CartesUtils;
 
-@Data
 public class Prevision {
 	
 	//cette liste est de 5, 6 ou 7 cartes, 
@@ -30,6 +29,38 @@ public class Prevision {
 		this.cartes = cartes;
 		this.resolutions = resolutions;
 		this.rangePrevision = rangePrevision;
+		this.pourcentageGagne = pourcentageGagne;
+	}
+
+	public List<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(List<Carte> cartes) {
+		this.cartes = cartes;
+	}
+
+	public List<Resolution> getResolutions() {
+		return resolutions;
+	}
+
+	public void setResolutions(List<Resolution> resolutions) {
+		this.resolutions = resolutions;
+	}
+
+	public double[][] getRangePrevision() {
+		return rangePrevision;
+	}
+
+	public void setRangePrevision(double[][] rangePrevision) {
+		this.rangePrevision = rangePrevision;
+	}
+
+	public double getPourcentageGagne() {
+		return pourcentageGagne;
+	}
+
+	public void setPourcentageGagne(double pourcentageGagne) {
 		this.pourcentageGagne = pourcentageGagne;
 	}
 	

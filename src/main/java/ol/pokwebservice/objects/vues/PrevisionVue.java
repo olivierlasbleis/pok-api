@@ -1,26 +1,56 @@
 package ol.pokwebservice.objects.vues;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import lombok.Data;
 import ol.pokwebservice.objects.Carte;
 import ol.pokwebservice.objects.Prevision;
+import ol.pokwebservice.services.PrevisionService;
 
-@Data
+
 public class PrevisionVue {
 	
-	private double[][] rangeDeGagne;
 	private double pourcentageDeGagne;
-	private List<CarteVue> cartes;
+	private RangeVue[][] rangeVue;
+
 	
-	public PrevisionVue(Prevision prevision) {
-		this.rangeDeGagne = prevision.getRangePrevision();
-		this.pourcentageDeGagne = prevision.getPourcentageGagne();
-		this.cartes = new ArrayList<CarteVue>();
-		for (Carte carte : prevision.getCartes()) {
-			this.cartes.add(carte.instancierCarteVue());
-		}		;
+	
+
+	public PrevisionVue(double pourcentageDeGagne, RangeVue[][] rangeVue) {
+		super();
+		this.rangeVue = rangeVue;
+		this.pourcentageDeGagne = pourcentageDeGagne;
 	}
+
+	public PrevisionVue() {
+		super();
+	}
+
+	
+
+	public double getPourcentageDeGagne() {
+		return pourcentageDeGagne;
+	}
+
+	public void setPourcentageDeGagne(double pourcentageDeGagne) {
+		this.pourcentageDeGagne = pourcentageDeGagne;
+	}
+
+	public RangeVue[][] getRangeVue() {
+		return rangeVue;
+	}
+
+	public void setRangeVue(RangeVue[][] rangeVue) {
+		this.rangeVue = rangeVue;
+	}
+
+	
+	
+	
 
 }

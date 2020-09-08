@@ -28,6 +28,10 @@ public class CarteService {
 		
 		for (int[] combinaison : combinaisonPossibles) {
 			listeMainsPossibles.add(new Main(paquetDeCarte.get(combinaison[0]),paquetDeCarte.get(combinaison[1])));
+			if (paquetDeCarte.get(combinaison[0]).getValeurCarte().equals(ValeurCarte.ROI)
+					&& paquetDeCarte.get(combinaison[1]).getValeurCarte().equals(ValeurCarte.ROI)) {
+				System.out.println("coucou");
+			}
 		}
 		return listeMainsPossibles;
 	}

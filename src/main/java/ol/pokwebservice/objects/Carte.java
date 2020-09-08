@@ -14,10 +14,7 @@ import ol.pokwebservice.objects.enums.SigneCarte;
 import ol.pokwebservice.objects.enums.ValeurCarte;
 import ol.pokwebservice.objects.vues.CarteVue;
 
-@Data
-@AllArgsConstructor
 @Entity
-@NoArgsConstructor
 public class Carte {
 	
 	@Id
@@ -76,5 +73,40 @@ public class Carte {
 		super();
 		this.valeurCarte = valeurCarte;
 		this.signeCarte = signeCarte;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public ValeurCarte getValeurCarte() {
+		return valeurCarte;
+	}
+
+	public void setValeurCarte(ValeurCarte valeurCarte) {
+		this.valeurCarte = valeurCarte;
+	}
+
+	public SigneCarte getSigneCarte() {
+		return signeCarte;
+	}
+
+	public void setSigneCarte(SigneCarte signeCarte) {
+		this.signeCarte = signeCarte;
+	}
+
+	public Carte(Integer id, ValeurCarte valeurCarte, SigneCarte signeCarte) {
+		super();
+		this.id = id;
+		this.valeurCarte = valeurCarte;
+		this.signeCarte = signeCarte;
+	}
+
+	public Carte() {
+		super();
 	}
 }

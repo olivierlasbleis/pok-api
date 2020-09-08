@@ -12,9 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ol.pokwebservice.utils.CartesUtils;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Main {
 	
 	Carte carte1;
@@ -33,6 +31,50 @@ public class Main {
 			this.i = 12 - this.carte1.getValeurCarte().ordinal();
 			this.j = 12 - this.carte2.getValeurCarte().ordinal();
 		}
+	}
+
+	public Main(Carte carte1, Carte carte2, int i, int j) {
+		super();
+		this.carte1 = carte1;
+		this.carte2 = carte2;
+		this.i = i;
+		this.j = j;
+	}
+
+	public Main() {
+		super();
+	}
+
+	public Carte getCarte1() {
+		return carte1;
+	}
+
+	public void setCarte1(Carte carte1) {
+		this.carte1 = carte1;
+	}
+
+	public Carte getCarte2() {
+		return carte2;
+	}
+
+	public void setCarte2(Carte carte2) {
+		this.carte2 = carte2;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int i) {
+		this.i = i;
+	}
+
+	public int getJ() {
+		return j;
+	}
+
+	public void setJ(int j) {
+		this.j = j;
 	}
 	
 	

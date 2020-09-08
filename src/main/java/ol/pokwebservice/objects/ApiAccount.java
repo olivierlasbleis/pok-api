@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 import ol.pokwebservice.utils.AllUtils;
 
 @Entity
-@Data
 public class ApiAccount {
 	
 	@Id
@@ -49,6 +48,38 @@ public class ApiAccount {
 	public ApiAccount(String id) {
 		super();
 		this.id = id;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getDateAppelApi() {
+		return dateAppelApi;
+	}
+
+	public void setDateAppelApi(String dateAppelApi) {
+		this.dateAppelApi = dateAppelApi;
+	}
+
+	public int getNbAppelApi() {
+		return nbAppelApi;
+	}
+
+	public void setNbAppelApi(int nbAppelApi) {
+		this.nbAppelApi = nbAppelApi;
+	}
+
+	public List<Carte> getCartesCourantes() {
+		return cartesCourantes;
+	}
+
+	public void setCartesCourantes(List<Carte> cartesCourantes) {
+		this.cartesCourantes = cartesCourantes;
 	}
 
 }

@@ -12,8 +12,6 @@ import ol.pokwebservice.objects.vues.JoueurPostVue;
 import ol.pokwebservice.objects.vues.JoueurVue;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class Joueur {
 
 	@Id
@@ -83,6 +81,78 @@ public class Joueur {
 			this.nbRiver++;
 			this.nbShowDown++;
 		}
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNomJoueur() {
+		return nomJoueur;
+	}
+
+	public void setNomJoueur(String nomJoueur) {
+		this.nomJoueur = nomJoueur;
+	}
+
+	public Integer getNbPreflop() {
+		return nbPreflop;
+	}
+
+	public void setNbPreflop(Integer nbPreflop) {
+		this.nbPreflop = nbPreflop;
+	}
+
+	public Integer getNbFlop() {
+		return nbFlop;
+	}
+
+	public void setNbFlop(Integer nbFlop) {
+		this.nbFlop = nbFlop;
+	}
+
+	public Integer getNbTurn() {
+		return nbTurn;
+	}
+
+	public void setNbTurn(Integer nbTurn) {
+		this.nbTurn = nbTurn;
+	}
+
+	public Integer getNbRiver() {
+		return nbRiver;
+	}
+
+	public void setNbRiver(Integer nbRiver) {
+		this.nbRiver = nbRiver;
+	}
+
+	public Integer getNbShowDown() {
+		return nbShowDown;
+	}
+
+	public void setNbShowDown(Integer nbShowDown) {
+		this.nbShowDown = nbShowDown;
+	}
+
+	public Joueur() {
+		super();
+	}
+
+	public Joueur(Integer id, String nomJoueur, Integer nbPreflop, Integer nbFlop, Integer nbTurn, Integer nbRiver,
+			Integer nbShowDown) {
+		super();
+		this.id = id;
+		this.nomJoueur = nomJoueur;
+		this.nbPreflop = nbPreflop;
+		this.nbFlop = nbFlop;
+		this.nbTurn = nbTurn;
+		this.nbRiver = nbRiver;
+		this.nbShowDown = nbShowDown;
 	}
 
 	

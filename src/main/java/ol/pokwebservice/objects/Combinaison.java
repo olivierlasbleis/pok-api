@@ -8,7 +8,6 @@ import ol.pokwebservice.objects.enums.ValeurCombinaison;
 import ol.pokwebservice.utils.CartesUtils;
 
 @Data
-@NoArgsConstructor
 public class Combinaison {
 	
 	
@@ -42,6 +41,26 @@ public class Combinaison {
 			return 1;
 		} else if (this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison()) != 0) {
 			return this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison());
+		}else if ( this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison()) == 0
+				&& this.getCartesCombinaison().size()>0
+				&& this.getCartesCombinaison().get(0).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(0).getValeurCarte())!=0) {
+			return this.getCartesCombinaison().get(0).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(0).getValeurCarte());
+		}else if (this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison()) == 0
+				&& this.getCartesCombinaison().size()>1
+				&& this.getCartesCombinaison().get(1).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(1).getValeurCarte())!=0) {
+			return this.getCartesCombinaison().get(1).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(1).getValeurCarte());
+		}else if (this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison()) == 0
+				&& this.getCartesCombinaison().size()>2
+				&& this.getCartesCombinaison().get(2).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(2).getValeurCarte())!=0) {
+			return this.getCartesCombinaison().get(2).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(2).getValeurCarte());
+		}else if (this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison()) == 0
+				&& this.getCartesCombinaison().size()>3
+				&& this.getCartesCombinaison().get(3).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(3).getValeurCarte())!=0) {
+			return this.getCartesCombinaison().get(3).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(3).getValeurCarte());
+		}else if (this.getValeurCombinaison().compareTo(combinaison.getValeurCombinaison()) == 0
+				&& this.getCartesCombinaison().size()>4
+				&& this.getCartesCombinaison().get(4).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(4).getValeurCarte())!=0) {
+			return this.getCartesCombinaison().get(4).getValeurCarte().compareTo(combinaison.getCartesCombinaison().get(4).getValeurCarte());
 		}else if (CartesUtils.getCarteMax(this.getCartesCombinaison()).getValeurCarte() 
 				.compareTo(CartesUtils.getCarteMax(combinaison.getCartesCombinaison()).getValeurCarte()) != 0){
 			return CartesUtils.getCarteMax(this.getCartesCombinaison()).getValeurCarte() 
@@ -63,6 +82,60 @@ public class Combinaison {
 		
 		
 		
+	}
+
+
+
+	public ValeurCombinaison getValeurCombinaison() {
+		return valeurCombinaison;
+	}
+
+
+
+	public void setValeurCombinaison(ValeurCombinaison valeurCombinaison) {
+		this.valeurCombinaison = valeurCombinaison;
+	}
+
+
+
+	public List<Carte> getCartesCombinaison() {
+		return cartesCombinaison;
+	}
+
+
+
+	public void setCartesCombinaison(List<Carte> cartesCombinaison) {
+		this.cartesCombinaison = cartesCombinaison;
+	}
+
+
+
+	public List<Carte> getCartesRestantes() {
+		return cartesRestantes;
+	}
+
+
+
+	public void setCartesRestantes(List<Carte> cartesRestantes) {
+		this.cartesRestantes = cartesRestantes;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	public Combinaison() {
+		super();
 	}
 	
 }

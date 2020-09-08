@@ -8,6 +8,7 @@ import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,7 @@ import ol.pokwebservice.objects.vues.CarteVue;
 import ol.pokwebservice.objects.vues.PrevisionVue;
 import ol.pokwebservice.services.ApiAccountService;
 import ol.pokwebservice.services.CarteService;
+import ol.pokwebservice.services.PrevisionService;
 import ol.pokwebservice.services.ResolutionService;
 import ol.pokwebservice.utils.AllUtils;
 import ol.pokwebservice.utils.CartesUtils;
@@ -30,22 +32,30 @@ public class PrevisionController {
 	ResolutionService resolutionService;
 	
 	@Autowired
+	PrevisionService previsionService;
+	
+	@Autowired
 	CarteService carteService;
 	
 	@Autowired
 	ApiAccountService apiAccountService;
 	
-	@GetMapping("/obtenirMesCartes")
-	public List<CarteVue> obtenirMesCartes(@RequestParam  String nomJoueur) {
-		return null;
-	}
 	
 	
-	@GetMapping("/obtenirPrevision")
-	public PrevisionVue obtenirPrevision(@RequestParam String apiKey,  String carte1,String carte2,String carte3,String carte4,String carte5,String carte6,String carte7) {
-		
-		if (apiAccountService.newCallApi(apiKey)) {
-			
+	@GetMapping("/getPrevision/{carte1}/{carte2}/{carte3}/{carte4}/{carte5}/{carte6}/{carte7}")
+	public PrevisionVue obtenirPrevision(@PathVariable(value="carte1") String carte1,
+			@PathVariable(value="carte2") String carte2,
+			@PathVariable(value="carte3") String carte3,
+			@PathVariable(value="carte4") String carte4,
+			@PathVariable(value="carte5") String carte5,
+			@PathVariable(value="carte6") String carte6,
+			@PathVariable(value="carte7") String carte7) {
+		if (carte6.equals("null")) {
+			carte6 = null;
+		}
+		if (carte7.equals("null")) {
+			carte7 = null;
+		}
 		
 		Main mainJoueur = new Main(carteService.findOrSave(CartesUtils.instancierCarte(carte1)),
 				carteService.findOrSave(CartesUtils.instancierCarte(carte2)));
@@ -131,16 +141,12 @@ public class PrevisionController {
 		}
 		pourcentageGagne  = pourcentageGagne / listeResolutions.size();
 		
-			
-		
 		Prevision prevision = new Prevision(cartes,
 				resolutions,
 				rangePrevision,
 				pourcentageGagne);
-		return new PrevisionVue(prevision);
-		}else {
-			return null;
-		}
+		return previsionService.convertPrevisionToPrevisionVue(prevision);
+		
 	}
 	
 
